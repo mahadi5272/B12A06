@@ -1,0 +1,35 @@
+.data-card{
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+.data-card img{
+     border-radius: 5px;
+}
+.data-card button{
+    background-color:#15803D ;
+    width: 100%;
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+}
+.data-card .info{
+    display: flex;
+    justify-content: space-between;
+}
+.data-card .info1{
+    background-color: #b1f9cc;
+    border-radius: 20px;
+    padding: 5px;
+    color: #15803D;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.li-hover{
+    padding: 10px;
+    
+}
+.li-hover:hover{
+    background-color: #6eb287;
+    color: aliceblue;
+}

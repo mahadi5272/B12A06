@@ -25,11 +25,12 @@
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
 .li-hover{
     padding: 10px;
     
 }
 .li-hover:hover{
     background-color: #6eb287;
-    color: aliceblue;
+    color: white;
 }

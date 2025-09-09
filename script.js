@@ -34,29 +34,39 @@ const showDataMainContainer = (allDatas) => {
   });
 };
 // hestry side
-  mainContainer.addEventListener("click",(e)=>{
-    if(e.target.innerText==="Add to Cart"){
-      const price = e.target.parentNode.children[3].innerText;
-      const id = e.target.parentNode.id;
+mainContainer.addEventListener("click", (e) => {
+  if (e.target.innerText === "Add to Cart") {
+    const price = e.target.parentNode.children[3].innerText;
+    const id = e.target.parentNode.id;
 
-      bookmarks.push({
-        price:price,
-        id:id
-      })
-      showHestory(bookmarks)
-     }
-  })
-  const showHestory =(bookmarks)=>{
-    rightContainer.innerHTML= "";
-    bookmarks.forEach((bookmark)=>{
-      const div = document.createElement("div")
-      div.classList.add("history-item")
-      div.innerHTML=`
-        <p>${bookmark.price}</p>
-      `;
-      rightContainer.appendChild(div)
-    })
+    bookmarks.push({
+      price: price,
+      id: id,
+    });
+    showHestory(bookmarks);
   }
+});
+const showHestory = (bookmarks) => {
+  rightContainer.innerHTML = "";
+  bookmarks.forEach((bookmark) => {
+    const div = document.createElement("div");
+    div.classList.add("history-item");
+    div.innerHTML = `
+        <p>${bookmark.price}</p>
+        <button onclick="hendelDelete('${bookmark.id}')">delet</button>
+      `;
+    rightContainer.appendChild(div);
+  });
+};
+
+const hendelDelete = (deletId) => {
+  const filterBookmurks = bookmarks.filter(
+    (bookmark) => bookmark.id !== deletId
+  );
+  bookmarks = filterBookmurks;
+  
+  showHestory(bookmarks);
+};
 
 // left container
 fetch("https://openapi.programming-hero.com/api/categories")
@@ -66,6 +76,7 @@ fetch("https://openapi.programming-hero.com/api/categories")
   });
 
 const showDataLeftContainer = (catagorys) => {
+  console.log(catagorys[0].id)
   leftContainer.innerHTML = "";
   const ul = document.createElement("ul");
   catagorys.forEach((cat) => {
@@ -73,28 +84,39 @@ const showDataLeftContainer = (catagorys) => {
     li.classList.add("li-hover");
     li.style.listStyle = "none";
     li.textContent = cat.category_name;
-    
+
     ul.appendChild(li);
-    li.addEventListener("click",()=>{
-      desplayNewsCatagory(cat.id)
-      console.log(cat.id)
-    })
+    li.addEventListener("click", () => {
+      desplayNewsCatagory(cat.id);
+     
+    });
   });
   leftContainer.appendChild(ul);
+
+  leftContainer.addEventListener("click",(e)=>{
+    const allLi = document.querySelectorAll("li");
+    allLi.forEach(li=>{
+      li.classList.remove("bg-green-700")
+    })
+    if(e.target.localName === "li"
+){
+  e.target.classList.add("bg-green-700")
+}
+  })
 };
 
 // catagory ta click korle ei function call hobe!
-const desplayNewsCatagory = (id)=>{
+const desplayNewsCatagory = (id) => {
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
-  .then((res)=>res.json())
-  .then((catagoryplant)=>{
-    showContainer(catagoryplant.plants)
-  })
-}
+    .then((res) => res.json())
+    .then((catagoryplant) => {
+      showContainer(catagoryplant.plants);
+    });
+};
 // catagory function
-const showContainer =(catagoryplants)=>{
-  mainContainer.innerHTML="";
-    catagoryplants.forEach((plant) => {
+const showContainer = (catagoryplants) => {
+  mainContainer.innerHTML = "";
+  catagoryplants.forEach((plant) => {
     const div = document.createElement("div");
     div.classList.add("data-card");
     div.innerHTML = `
@@ -111,27 +133,21 @@ const showContainer =(catagoryplants)=>{
         `;
     mainContainer.append(div);
   });
-  
-//   mainContainer.innerHTML="";
-//   const div = document.createElement("div");
-//   div.innerHTML+=`
 
-//     <img src="${catagoryplants[2].image
-// }" alt="">
-//   `
-//   mainContainer.append(div)
+  //   mainContainer.innerHTML="";
+  //   const div = document.createElement("div");
+  //   div.innerHTML+=`
 
-
+  //     <img src="${catagoryplants[2].image
+  // }" alt="">
+  //   `
+  //   mainContainer.append(div)
 
   // catagoryplant.forEach(plant=>{
   //     mainContainer.innerHTML = "";
   // const div = document.createElement("div");
   //   div.textContent = plant;
-    
+
   //   mainContainer.appendChild(div);
   // })
-
-}
-
-
-
+};

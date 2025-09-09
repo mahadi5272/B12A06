@@ -36,18 +36,27 @@ const showDataMainContainer = (allDatas) => {
 // hestry side
   mainContainer.addEventListener("click",(e)=>{
     if(e.target.innerText==="Add to Cart"){
-      console.log(e.target.parentNode.children)
-      const price = e.target.parentNode.children[3];
+      const price = e.target.parentNode.children[3].innerText;
       const id = e.target.parentNode.id;
 
       bookmarks.push({
         price:price,
         id:id
       })
-      console.log(bookmarks)
-
-    }
+      showHestory(bookmarks)
+     }
   })
+  const showHestory =(bookmarks)=>{
+    rightContainer.innerHTML= "";
+    bookmarks.forEach((bookmark)=>{
+      const div = document.createElement("div")
+      div.classList.add("history-item")
+      div.innerHTML=`
+        <p>${bookmark.price}</p>
+      `;
+      rightContainer.appendChild(div)
+    })
+  }
 
 // left container
 fetch("https://openapi.programming-hero.com/api/categories")

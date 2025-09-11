@@ -22,37 +22,15 @@
       class="navbar bg-base-100 shadow-sm bg-[#15803D] text-white max-sm:max-w-screen"
     >
       <div class="navbar-start">
-        <div class="dropdown">
-          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+        <div>
+          <div class="  lg:hidden">
+            <select class="bg-green-900 text-white rounded-md p-2 border-none">
+              <option class="text-green-500">click show item</option>
+              <option>About</option>
+              <option>Gallery</option>
+              <option>Plant a Tree</option>
+            </select>
           </div>
-          <ul
-            tabindex="0"
-            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li><a>Item 1</a></li>
-            <li>
-              <a>Parent</a>
-              <ul class="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </li>
-            <li><a>Item 3</a></li>
-          </ul>
         </div>
         <a class="btn btn-ghost text-xl">Green Earth</a>
       </div>
@@ -103,10 +81,7 @@
       <div
         id="mainContainer"
         class="grid grid-cols-1 sm:grid-cols-3 col-span-3 gap-3 p-3"
-      >
-        <!-- এখানে মূল কন্টেন্ট যাবে -->
-      </div>
-
+      ><span class=" ml-70 loading loading-dots loading-xl"></span></div>
       <!-- Right Container -->
       <div class="bg-white col-span-1 p-3">
         <div class="bg-green-700 mb-5 text-white rounded-md p-2">
@@ -115,10 +90,24 @@
         <div id="rightContainer"></div>
         <div class="rounded-lg flex justify-between p-2 bg-gray-200 mt-5">
           <p>Total:</p>
-          <p>0</p>
+          <p id="count">0</p>
         </div>
       </div>
     </div>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="DetailsContainer"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
     <!-- About Section -->
     <div class="w-8/12 mx-auto max-sm:w-full">
@@ -184,12 +173,20 @@
               type="text"
               placeholder="Your Email Address"
             /><br />
-
+            <select class="bg-white w-full mb-1 rounded-sm"
+              type="text"
+              placeholder="Number of Trees" value="" name="" id="">
+              <option>Number of Trees</option>
+              <option>1:tree 5$</option>
+              <option value="">2:tree 50$</option>
+              <option value="">3:tree 500$</option>
+            </select>
+<!-- 
             <input
               class="bg-white w-full mb-1 rounded-sm"
               type="text"
               placeholder="Number of Trees"
-            /><br />
+            /><br /> -->
 
             <button class="w-full rounded-xl bg-[#FACC15] text-[#2d834c]">
               Donate Now
